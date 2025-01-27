@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "ngr-to-bng"
+version = "0.1.0"
+description = ""
+authors = ["hularuns <159131400+hularuns@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
