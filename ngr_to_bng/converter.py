@@ -56,10 +56,10 @@ def csv_converter(fp: str, col_name: str):
             for i, col in enumerate(col_names):
                 if col.lower() == col_name:
                     matched_idx = i
-                    
             if not matched_idx:
                 logger.error(f"No columns matching the ngr or 2nd input variable found in the csv.")
                 return 
+            
             fp_name = f"{fp.split('csv')[0]}_converted.csv"
             with open(fp_name, mode = 'w', newline = '') as newcsv:
                 writer = csv.writer(newcsv)

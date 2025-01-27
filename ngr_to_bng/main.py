@@ -9,7 +9,7 @@ def main():
     """ Handles csvs only right now """
 
     arg_len = len(sys.argv)
-    fp = sys.argv[1] if arg_len > 1 else 'tester.csv' # could use input() or even just statically assign this path
+    fp = sys.argv[1] if arg_len > 1 else 'data.csv' # could use input() or even just statically assign this path
     valid_file_types = ['csv']
     if not fp.endswith(tuple(file_type for file_type in valid_file_types)):
         logger.error(f"This file type is current not supported. Current input file types supported include:\n{", ".join(valid_file_types)}")
