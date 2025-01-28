@@ -27,7 +27,7 @@ def handle_validation(ngr: str):
         raise NGRCodeError(f"{prefix} was not a valid prefix for the UK. Valid coordinates are:")
     coord_len = len(coords)
     if len(ngr) < 4 or not 2 < coord_len < 11 or not coord_len % 2 == 0 :
-        raise NGRCoordLengthError(f"{len(coords)}")
+        raise NGRCoordLengthError(f"Length of coordinates not within 2 - 10 coords - coords is {len(coords)} in length.")
     if not coords.isdigit() or not isinstance(ngr, str):
         raise TypeError(f"Coordinate was not a valid format - Format is two letters followed by integers: {coords}")
     return True

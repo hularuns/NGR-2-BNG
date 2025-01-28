@@ -67,13 +67,3 @@ ngr_lookup = {
     'TQ': {'east': 5, 'north': 1},
     'TV': {'east': 5, 'north': 0}
 }
-
-if __name__ == "__main__":
-    for ngr, coords in ngr_lookup.items():
-        #get the 100km prefix
-        east = coords.get('east')/100
-        north = coords.get('north')/100
-        ngr_lookup[ngr].update({
-            "east": int(east), "north": int(north)
-        })
-    pprint(ngr_lookup)    

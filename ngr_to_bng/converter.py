@@ -1,6 +1,6 @@
 
 from ngr_to_bng.ngr_lookup import ngr_lookup
-from ngr_to_bng.validation import validate_ngr_input
+from ngr_to_bng.validation import validate_ngr_input, NGRCodeError, NGRCoordLengthError
 import re
 import csv
 from ngr_to_bng.utils import get_logger
@@ -60,13 +60,16 @@ def csv_converter(fp: str, col_name: str):
                 logger.error(f"No columns matching the ngr or 2nd input variable found in the csv.")
                 return 
             
-            fp_name = f"{fp.split('csv')[0]}_converted.csv"
+            fp_name = f"{fp.split('.csv')[0]}_converted.csv"
             with open(fp_name, mode = 'w', newline = '') as newcsv:
                 writer = csv.writer(newcsv)
                 col_names.extend(['easting', 'northing'])
                 writer.writerow(col_names)
                 for i, row in enumerate(orig_data):
-                    easting, northing = convert_ngr_to_bng(row[matched_idx])
-                    row.extend([easting, northing])
+                    try:
+                        easting, northing = convert_ngr_to_bng(row[matched_idx])
+                        row.extend([easting, northing])
+                    except (NGRCodeError, NGRCoordLengthError, TypeError) as e:
+                        logger.error(f"Error at index {i} - skipping this row: {e}")
                     writer.writerow(row)
             logger.info(f"Eastings and Northings successfully added to {fp_name}")
