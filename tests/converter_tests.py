@@ -9,6 +9,10 @@ class TestValidation(unittest.TestCase):
         result = convert_ngr_to_bng("SP158749")
         self.assertEqual(result, (415800, 274900))
     
+    def test_convert_short_digit(self):
+        result = convert_ngr_to_bng("SP1234")
+        self.assertEqual(result, (412000 , 234000))
+    
     def test_convert_seven_digit(self): 
         self.assertRaises(NGRCoordLengthError, convert_ngr_to_bng, "SP1587493")
         

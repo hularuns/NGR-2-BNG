@@ -27,16 +27,13 @@ def convert_ngr_to_bng(ngr: str) -> tuple[int]:
     
     #handle easting
     easting = str(easting_pref_value) + easting_value
-
     if len(easting) < 6:
-        for _ in range(6-len(easting)):
-            easting += '0'
+        easting += ((6 - len(easting )) *'0')
             
     # handle northing
     northing = str(northing_pref_value) + northing_value
     if len(northing) < 6:
-        for _ in range(6-len(northing)):
-            northing += '0'
+        northing += ((6 - len(northing )) *'0')
     
     return int(easting), int(northing)
 
